@@ -1,6 +1,6 @@
 <script setup>
 const useFetch = async () => {
-  const response = await fetch('http://demo.api-separation.digipack.io/api/test');
+  const response = await fetch('http://demo.api-separation.digipack.io/api/v1/test');
   const data = await response.json();
   console.log(data);
 };
