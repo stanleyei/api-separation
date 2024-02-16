@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return ['message' => 'Index'];
+    return ['Laravel' => app()->version()];
+});
+
+Route::get('/aaa', function () {
+    return response()->json(['message' => 'Hello World!'], 200);
 });
 
 require __DIR__.'/auth.php';
