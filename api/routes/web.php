@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/aaa', function () {
+Route::get('/', function () {
     return response()->json(['message' => 'Welcome to our API aaa'], 200);
 });
 
