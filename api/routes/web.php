@@ -13,8 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/aaa', function () {
-    return response()->json(['message' => 'Welcome to our API aaa'], 200);
-});
-
 require __DIR__.'/auth.php';
