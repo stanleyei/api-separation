@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Index from '@/views/Index.vue';
+import FrontendLayout from '@/components/template/FrontendLayout.vue';
 import HomeView from '@/views/HomeView.vue';
 import NotFound from '@/views/NotFound.vue';
 
@@ -8,7 +8,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: Index,
+      component: FrontendLayout,
       children: [
         {
           path: '',
