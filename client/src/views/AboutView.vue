@@ -1,6 +1,7 @@
 <script setup>
+const apiHost = import.meta.env.VITE_API_HOST;
 const useFetch = async () => {
-  const response = await fetch('http://demo.api-separation.digipack.io/api/v1/test');
+  const response = await fetch(`${apiHost}/api/v1/test`);
   const data = await response.json();
   console.log(data);
 };
