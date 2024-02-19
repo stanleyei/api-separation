@@ -1,5 +1,7 @@
 <script setup>
-const apiHost = import.meta.env.VITE_API_HOST;
+import { inject } from 'vue'
+
+const apiHost = inject('apiHost');
 const useFetch = async () => {
   const response = await fetch(`${apiHost}/api/v1/test`);
   const data = await response.json();
