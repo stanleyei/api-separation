@@ -3,7 +3,7 @@ import { inject } from 'vue'
 
 const apiHost = inject('apiHost');
 const useFetch = async () => {
-  const response = await fetch(`${apiHost}/api/v1/test`);
+  const response = await fetch(`${apiHost}/test`);
   const data = await response.json();
   console.log(data);
 };
