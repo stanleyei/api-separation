@@ -1,28 +1,9 @@
 const getCookie = (name) => {
-  let result = '';
-  const cookies = document.cookie.split(';');
-  for (const cookie of cookies) {
-    const [key, value] = cookie.split('=');
-    if (key.trim() === name) return result = value;
-  }
+  const result = document.cookie.split(';')
+    .map(cookie => cookie.split('=', 2))
+    .find(cookieKV => cookieKV[0].trim() === name)?.[1];
+
   return decodeURIComponent(result);
-};
-
-const useFetch = async (url, method, body) => {
-  const response = await fetch(url, {
-    method,
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest',
-      'X-XSRF-TOKEN': decodeURIComponent(getCookie('XSRF-TOKEN')),
-    },
-    body: JSON.stringify(body),
-    credentials: 'include',
-  });
-
-  const data = await response.json();
-  return data;
 };
 
 export {

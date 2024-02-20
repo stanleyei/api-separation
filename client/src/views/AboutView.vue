@@ -3,8 +3,9 @@ import { inject } from 'vue';
 import { getCookie } from '@/composables/useRequest';
 // import axios from 'axios';
 
+const apiHost = inject('apiHost');
 // const client = axios.create({
-//   baseURL: 'http://localhost:8000',
+//   baseURL: apiHost,
 //   headers: {
 //     'X-Requested-With': 'XMLHttpRequest',
 //   },
@@ -12,11 +13,11 @@ import { getCookie } from '@/composables/useRequest';
 // });
 
 // client.interceptors.request.use((config) => {
-//   config.headers['X-XSRF-TOKEN'] = decodeURIComponent(getCookie('XSRF-TOKEN'));
+// 	if (['POST', 'PUT', 'PATCH', 'DELETE'].includes(config.method?.toUpperCase())) {
+//     config.headers['X-XSRF-TOKEN'] = getCookie('XSRF-TOKEN');
+// 	}
 //   return config;
-// })
-
-const apiHost = inject('apiHost');
+// });
 
 const getData = async () => {
   const response = await fetch(`${apiHost}/api/v1/test`, {
@@ -38,33 +39,43 @@ const login = async () => {
     credentials: 'include',
   });
 
-  await fetch(`${apiHost}/login`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest',
-      'X-XSRF-TOKEN': getCookie('XSRF-TOKEN'),
-    },
-    body: JSON.stringify({
-      email: 'admin@gmail.com',
-      password: '12345678',
-    }),
-    credentials: 'include',
-  });
+  try {
+    await fetch(`${apiHost}/login`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-XSRF-TOKEN': getCookie('XSRF-TOKEN'),
+      },
+      body: JSON.stringify({
+        email: 'admin@gmail.com',
+        password: '12345678',
+      }),
+      credentials: 'include',
+    });
+    console.log('login success');
+  } catch (error) {
+    console.error('login failed', error);
+  }
 };
 
 const logout = async () => {
-  await fetch(`${apiHost}/logout`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest',
-      'X-XSRF-TOKEN': getCookie('XSRF-TOKEN'),
-    },
-    credentials: 'include',
-  });
+  try {
+    await fetch(`${apiHost}/logout`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-XSRF-TOKEN': getCookie('XSRF-TOKEN'),
+      },
+      credentials: 'include',
+    });
+    console.log('logout success');
+  } catch (error) {
+    console.error('logout failed', error);
+  }
 };
 </script>
 
