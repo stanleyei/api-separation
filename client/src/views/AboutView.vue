@@ -19,7 +19,7 @@ import { getCookie } from '@/composables/useRequest';
 const apiHost = inject('apiHost');
 
 const getData = async () => {
-  const response = await fetch(`${apiHost}/test`, {
+  const response = await fetch(`${apiHost}/api/v1/test`, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const getData = async () => {
 };
 
 const login = async () => {
-  await fetch('http://localhost:8000/sanctum/csrf-cookie', {
+  await fetch(`${apiHost}/sanctum/csrf-cookie`, {
     headers: {
       'X-Requested-With': 'XMLHttpRequest',
     },
