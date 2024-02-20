@@ -1,10 +1,11 @@
 const getCookie = (name) => {
+  let result = '';
   const cookies = document.cookie.split(';');
   for (const cookie of cookies) {
     const [key, value] = cookie.split('=');
-    if (key.trim() === name) return value;
+    if (key.trim() === name) return result = value;
   }
-  return '';
+  return decodeURIComponent(result);
 };
 
 const useFetch = async (url, method, body) => {

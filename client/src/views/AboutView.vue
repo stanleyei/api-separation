@@ -44,7 +44,7 @@ const login = async () => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
-      'X-XSRF-TOKEN': decodeURIComponent(getCookie('XSRF-TOKEN')),
+      'X-XSRF-TOKEN': getCookie('XSRF-TOKEN'),
     },
     body: JSON.stringify({
       email: 'admin@gmail.com',
@@ -61,7 +61,7 @@ const logout = async () => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
-      'X-XSRF-TOKEN': decodeURIComponent(getCookie('XSRF-TOKEN')),
+      'X-XSRF-TOKEN': getCookie('XSRF-TOKEN'),
     },
     credentials: 'include',
   });
