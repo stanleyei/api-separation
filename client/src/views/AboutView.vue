@@ -40,7 +40,7 @@ const login = async () => {
   });
 
   try {
-    await fetch(`${apiHost}/login`, {
+    const res = await fetch(`${apiHost}/login`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -54,7 +54,9 @@ const login = async () => {
       }),
       credentials: 'include',
     });
-    console.log('login success');
+
+    const data = await res.json();
+    console.log(data);
   } catch (error) {
     console.error('login failed', error);
   }
