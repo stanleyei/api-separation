@@ -38,23 +38,33 @@ const login = async () => {
     credentials: 'include',
   });
 
-  console.log(document.cookie);
-  // const res = await fetch('http://localhost:8000/login', {
-  //   method: 'POST',
-  //   headers: {
-  //     Accept: 'application/json',
-  //     'Content-Type': 'application/json',
-  //     'X-Requested-With': 'XMLHttpRequest',
-  //     'X-XSRF-TOKEN': decodeURIComponent(getCookie('XSRF-TOKEN')),
-  //   },
-  //   body: JSON.stringify({
-  //     email: 'admin@gmail.com',
-  //     password: '12345678',
-  //   }),
-  //   credentials: 'include',
-  // });
+  await fetch(`${apiHost}/login`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-XSRF-TOKEN': decodeURIComponent(getCookie('XSRF-TOKEN')),
+    },
+    body: JSON.stringify({
+      email: 'admin@gmail.com',
+      password: '12345678',
+    }),
+    credentials: 'include',
+  });
+};
 
-  // console.log(res);
+const logout = async () => {
+  await fetch(`${apiHost}/logout`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-XSRF-TOKEN': decodeURIComponent(getCookie('XSRF-TOKEN')),
+    },
+    credentials: 'include',
+  });
 };
 </script>
 
@@ -63,6 +73,7 @@ const login = async () => {
     <h1>This is an about page</h1>
     <button type="button" @click="getData">獲取資料</button>
     <button type="button" @click="login">登入</button>
+    <button type="button" @click="logout">登出</button>
   </div>
 </template>
 
