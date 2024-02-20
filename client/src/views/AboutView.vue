@@ -1,5 +1,5 @@
 <script setup>
-import { inject } from 'vue';
+import { inject, ref } from 'vue';
 import { getCookie } from '@/composables/useRequest';
 // import axios from 'axios';
 
@@ -13,11 +13,11 @@ const apiHost = inject('apiHost');
 // });
 
 // client.interceptors.request.use((config) => {
-// 	if (['POST', 'PUT', 'PATCH', 'DELETE'].includes(config.method?.toUpperCase())) {
-//     config.headers['X-XSRF-TOKEN'] = getCookie('XSRF-TOKEN');
-// 	}
+//   config.headers['X-XSRF-TOKEN'] = getCookie('XSRF-TOKEN');
 //   return config;
 // });
+
+const user = ref(null);
 
 const getData = async () => {
   const response = await fetch(`${apiHost}/api/v1/test`, {
@@ -56,6 +56,7 @@ const login = async () => {
     });
 
     const data = await res.json();
+    user.value = data;
     console.log(data);
   } catch (error) {
     console.error('login failed', error);
@@ -74,9 +75,28 @@ const logout = async () => {
       },
       credentials: 'include',
     });
-    console.log('logout success');
+
+    user.value = null;
   } catch (error) {
     console.error('logout failed', error);
+  }
+};
+
+const getUser = async () => {
+  try {
+    const res = await fetch(`${apiHost}/api/v1/user`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-XSRF-TOKEN': getCookie('XSRF-TOKEN'),
+      },
+      credentials: 'include',
+    });
+    const data = await res.json();
+    console.log(data);
+  } catch (error) {
+    console.error('get user failed', error);
   }
 };
 </script>
@@ -85,8 +105,11 @@ const logout = async () => {
   <div class="about">
     <h1>This is an about page</h1>
     <button type="button" @click="getData">獲取資料</button>
-    <button type="button" @click="login">登入</button>
-    <button type="button" @click="logout">登出</button>
+    <button v-if="!user" type="button" @click="login">登入</button>
+    <div v-else>
+      <button type="button" @click="logout">登出</button>
+      <button type="button" @click="getUser">獲取使用者資料</button>
+    </div>
   </div>
 </template>
 

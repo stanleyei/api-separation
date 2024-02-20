@@ -20,14 +20,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $user = Auth::user();
+        $user = $request->user();
 
-        // $data = [
-        //     'user' => $user,
-        //     'token' => $user->createToken('token-name')->plainTextToken,
-        // ];
+        $data = [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+        ];
 
-        return response()->json($user);
+        return response()->json($data);
     }
 
     /**
