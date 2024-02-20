@@ -3,7 +3,12 @@ import { inject } from 'vue'
 
 const apiHost = inject('apiHost');
 const useFetch = async () => {
-  const response = await fetch(`${apiHost}/test`);
+  const response = await fetch(`${apiHost}/test`, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
   const data = await response.json();
   console.log(data);
 };
@@ -12,7 +17,7 @@ const useFetch = async () => {
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <button type="button" @click="useFetch">發送請求</button>
+    <button type="button" @click="useFetch">獲取資料</button>
   </div>
 </template>
 
@@ -21,8 +26,10 @@ const useFetch = async () => {
   .about {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 16px;
   }
 }
 </style>
