@@ -1,6 +1,6 @@
 <script setup>
 import { inject } from 'vue';
-import { useFetch } from '@/composables/useRequest';
+import { getCookie } from '@/composables/useRequest';
 // import axios from 'axios';
 
 // const client = axios.create({
@@ -17,15 +17,6 @@ import { useFetch } from '@/composables/useRequest';
 // })
 
 const apiHost = inject('apiHost');
-
-const getCookie = (name) => {
-  const cookies = document.cookie.split(';');
-  for (const cookie of cookies) {
-    const [key, value] = cookie.split('=');
-    if (key.trim() === name) return value;
-  }
-  return '';
-};
 
 const getData = async () => {
   const response = await fetch(`${apiHost}/test`, {
@@ -47,12 +38,23 @@ const login = async () => {
     credentials: 'include',
   });
 
-  const res = useFetch('http://localhost:8000/login', 'POST', {
-    email: 'admin@gmail.com',
-    password: '12345678',
-  });
+  console.log(document.cookie);
+  // const res = await fetch('http://localhost:8000/login', {
+  //   method: 'POST',
+  //   headers: {
+  //     Accept: 'application/json',
+  //     'Content-Type': 'application/json',
+  //     'X-Requested-With': 'XMLHttpRequest',
+  //     'X-XSRF-TOKEN': decodeURIComponent(getCookie('XSRF-TOKEN')),
+  //   },
+  //   body: JSON.stringify({
+  //     email: 'admin@gmail.com',
+  //     password: '12345678',
+  //   }),
+  //   credentials: 'include',
+  // });
 
-  console.log(res);
+  // console.log(res);
 };
 </script>
 

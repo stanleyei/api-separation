@@ -25,5 +25,5 @@ const useFetch = async (url, method, body) => {
 };
 
 export {
-  useFetch,
+  getCookie,
 };
