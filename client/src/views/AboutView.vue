@@ -7,6 +7,7 @@ const useFetch = async () => {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
     },
   });
   const data = await response.json();
