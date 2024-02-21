@@ -19,14 +19,13 @@ const checkAuth = async () => {
 };
 
 const login = async () => {
-  const res = await useAxios.get('/sanctum/csrf-cookie');
-  console.log(res);
-  // const res = await useFetch('/auth/login', 'POST', {
-  //   email: 'admin@gmail.com',
-  //   password: '12345678',
-  // });
+  await useAxios.get('/auth/sanctum/csrf-cookie');
+  const res = await useFetch('/auth/login', 'POST', {
+    email: 'admin@gmail.com',
+    password: '12345678',
+  });
 
-  // user.value = res?.rt_data ?? null;
+  user.value = res?.rt_data ?? null;
 };
 
 const logout = async () => {

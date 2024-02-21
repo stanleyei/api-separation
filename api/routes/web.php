@@ -14,8 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/aaa', function () {
-    return ['message' => 'aaa'];
-});
-
 require __DIR__.'/auth.php';
