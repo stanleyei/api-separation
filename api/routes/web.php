@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/auth/aaa', function () {
+Route::get('/aaa', function () {
     return ['message' => 'aaa'];
 });
 

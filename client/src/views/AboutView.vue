@@ -20,7 +20,7 @@ const checkAuth = async () => {
 
 const login = async () => {
   await useAxios.get('/sanctum/csrf-cookie');
-  const res = await useFetch('/login', 'POST', {
+  const res = await useFetch('/auth/login', 'POST', {
     email: 'admin@gmail.com',
     password: '12345678',
   });
@@ -29,7 +29,7 @@ const login = async () => {
 };
 
 const logout = async () => {
-  const res = await useFetch('/logout', 'POST');
+  const res = await useFetch('/auth/logout', 'POST');
   if (!res?.rt_code) return;
   user.value = null;
 };
@@ -48,7 +48,6 @@ onMounted(() => {
   <div class="about">
     <h1>This is an about page</h1>
     <button type="button" @click="getData">獲取資料</button>
-    <button type="button" @click="checkAuth">檢查登入狀態</button>
     <button v-if="!user" type="button" @click="login">登入</button>
     <div v-else>
       <button type="button" @click="logout">登出</button>
