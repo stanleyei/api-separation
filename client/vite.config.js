@@ -18,11 +18,5 @@ export default defineConfig({
   },
   server: {
     open: true,
-    proxy: {
-      '/api': {
-        target: 'https://emap-api.dannyball710.net',
-        changeOrigin: true,
-      },
-    },
   },
 })
