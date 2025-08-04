@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <h1>查無此頁</h1>
+  <h1>查無此頁喔</h1>
 </template>
 
 <style scoped>
