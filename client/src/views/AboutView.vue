@@ -46,7 +46,7 @@ onMounted(() => {
 
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>關於頁面</h1>
     <button type="button" @click="getData">獲取資料</button>
     <button v-if="!user" type="button" @click="login">登入</button>
     <div v-else>
