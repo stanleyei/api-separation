@@ -11,7 +11,7 @@ const getCookie = (name) => {
 };
 
 const useFetch = async (path, method, body) => {
-  const url = `${apiHost}/laravel${path}`;
+  const url = `${apiHost}${path}`;
   const option = {
     method,
     headers: {
